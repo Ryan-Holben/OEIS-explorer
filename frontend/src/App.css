@@ -94,27 +94,61 @@ main {
   background-color: var(--color-info);
 }
 
+/* Font showcase */
+.font-sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.font-sample h3 {
+  font-size: 0.9rem;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header-sample {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.body-sample {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* Sequence preview mockup */
 .sequence-preview {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .sequence-header {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
 .a-number {
   color: var(--color-accent-primary);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .sequence-name {
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  flex: 1;
 }
 
 .sequence-data {

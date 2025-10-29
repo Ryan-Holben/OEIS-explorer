@@ -79,6 +79,78 @@ function App() {
         </section>
 
         <section className="section">
+          <h2>Font Showcase</h2>
+          <p style={{ marginBottom: 'var(--space-lg)', color: 'var(--color-text-secondary)' }}>
+            Elegant, readable, professional fonts with subtle design personality
+          </p>
+          <div className="grid-wide">
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <h3>Inter</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3>Poppins</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <h3>Space Grotesk</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                <h3>DM Sans</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
+                <h3>IBM Plex Sans</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'Merriweather', serif" }}>
+                <h3>Merriweather (Serif)</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'Lora', serif" }}>
+                <h3>Lora (Serif)</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+
+            <Panel>
+              <div className="font-sample" style={{ fontFamily: "'Crimson Pro', serif" }}>
+                <h3>Crimson Pro (Serif)</h3>
+                <p className="header-sample">Sequential Explorer</p>
+                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+              </div>
+            </Panel>
+          </div>
+        </section>
+
+        <section className="section">
           <h2>Content Examples</h2>
           <div className="grid-wide">
             <Panel>

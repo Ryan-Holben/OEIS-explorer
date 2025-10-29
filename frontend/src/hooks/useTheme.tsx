@@ -32,11 +32,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       const effective = getEffectiveTheme();
       setEffectiveTheme(effective);
 
-      if (effective === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
+      // Always set the data-theme attribute explicitly to override system preferences
+      document.documentElement.setAttribute('data-theme', effective);
     };
 
     updateTheme();

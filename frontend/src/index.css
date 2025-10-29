@@ -71,6 +71,45 @@
   --color-focus-ring: rgba(102, 126, 234, 0.3);
 }
 
+/* Explicit light theme (overrides system preference) */
+[data-theme='light'] {
+  /* Light theme colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #e9ecef;
+
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6c757d;
+  --color-text-tertiary: #adb5bd;
+
+  --color-border: #dee2e6;
+  --color-border-hover: #adb5bd;
+
+  --color-panel-bg: #ffffff;
+  --color-panel-border: rgba(0, 0, 0, 0.08);
+  --color-panel-shadow: rgba(0, 0, 0, 0.08);
+
+  --color-accent-primary: #667eea;
+  --color-accent-primary-hover: #5a67d8;
+  --color-accent-secondary: #764ba2;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Interactive states */
+  --color-hover-bg: rgba(0, 0, 0, 0.04);
+  --color-active-bg: rgba(0, 0, 0, 0.08);
+  --color-focus-ring: rgba(102, 126, 234, 0.3);
+
+  /* Light shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
 [data-theme='dark'] {
   /* Dark theme colors */
   --color-bg-primary: #1a1a1a;
