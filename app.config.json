@@ -1,0 +1,21 @@
+{
+  "name": "Sequential",
+  "description": "A modern interface for exploring integer sequences",
+  "version": "0.1.0",
+  "author": "Your Name",
+  "repository": "https://github.com/yourusername/seq",
+  "homepage": "https://yourusername.github.io/seq",
+  "api": {
+    "baseUrl": "http://localhost:3000",
+    "endpoints": {
+      "sequence": "/api/sequence",
+      "search": "/api/search",
+      "random": "/api/random"
+    }
+  },
+  "ui": {
+    "previewHoverDelay": 500,
+    "recentSequencesCount": 10,
+    "maxSearchResults": 50
+  }
+}
