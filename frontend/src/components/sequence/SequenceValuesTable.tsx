@@ -22,11 +22,11 @@ export interface SequenceValuesTableProps {
 
 export function SequenceValuesTable({
   values,
-  maxCount = 50,
+  maxCount,
   startIndex = 0,
 }: SequenceValuesTableProps) {
-  const displayValues = values.slice(0, maxCount);
-  const hasMore = values.length > maxCount;
+  const displayValues = maxCount ? values.slice(0, maxCount) : values;
+  const hasMore = maxCount ? values.length > maxCount : false;
 
   return (
     <div className={styles.container}>
