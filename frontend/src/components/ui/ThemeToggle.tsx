@@ -1,4 +1,4 @@
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../hooks/useTheme.tsx';
 import styles from './ThemeToggle.module.css';
 
 export const ThemeToggle = () => {
