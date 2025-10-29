@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { SearchBar } from '../components/ui/SearchBar';
 import { SequenceCard } from '../components/sequence/SequenceCard';
 import { useRecentSequences, useRandomSequence } from '../hooks/useSequenceData';
+import { router } from '../hooks/useRouter';
 import styles from './HomePage.module.css';
 
 const RECENT_SEQUENCES_COUNT = 8;
