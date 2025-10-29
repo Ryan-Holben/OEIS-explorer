@@ -1,8 +1,8 @@
-import { ComponentShowcase } from './demos/ComponentShowcase';
+import { HomePage } from './pages/HomePage';
 import './App.css';
 
 function App() {
-  return <ComponentShowcase />;
+  return <HomePage />;
 }
 
 export default App;

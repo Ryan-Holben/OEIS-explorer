@@ -1,0 +1,247 @@
+/**
+ * Homepage styles
+ */
+
+.homePage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary);
+}
+
+/* Header Section */
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-primary) 100%
+  );
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.searchContainer {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Main Content - Two Column Layout */
+.mainContent {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* Section Headers */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.sectionHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.count {
+  font-size: 0.9rem;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+/* Recent Sequences Column (Left) */
+.recentColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.recentFeed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.recentItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dateLabel {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  padding-left: var(--space-sm);
+  letter-spacing: 0.01em;
+}
+
+/* Random Sequence Column (Right) */
+.randomColumn {
+  position: sticky;
+  top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.randomShowcase {
+  margin-bottom: var(--space-lg);
+}
+
+.refreshButton {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+}
+
+.refreshButton:hover {
+  background-color: var(--color-hover-bg);
+  border-color: var(--color-accent-primary);
+  transform: scale(1.05);
+}
+
+.refreshButton:active {
+  transform: scale(0.95);
+}
+
+.refreshButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refreshButton:disabled:hover {
+  background: transparent;
+  border-color: var(--color-border);
+}
+
+.randomDescription {
+  padding: var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.randomDescription p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+}
+
+.footer p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.footer a {
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.footer a:hover {
+  color: var(--color-accent-primary-hover);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .mainContent {
+    grid-template-columns: 1fr 350px;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 968px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .randomColumn {
+    position: static;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .mainContent {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.3rem;
+  }
+}
