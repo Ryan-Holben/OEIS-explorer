@@ -1,0 +1,64 @@
+.panel {
+  background-color: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px var(--color-panel-shadow);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.panel.clickable {
+  cursor: pointer;
+}
+
+.panel.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-panel-shadow);
+  border-color: var(--color-border-hover);
+}
+
+.panel.clickable:active {
+  transform: translateY(0);
+}
+
+/* Size variants */
+.small {
+  padding: var(--space-sm);
+}
+
+.medium {
+  padding: var(--space-md);
+}
+
+.large {
+  padding: var(--space-lg);
+}
+
+.xlarge {
+  padding: var(--space-xl);
+}
+
+/* Elevation variants */
+.flat {
+  box-shadow: none;
+  border: 1px solid var(--color-border);
+}
+
+.elevated {
+  box-shadow: var(--shadow-md);
+}
+
+.floating {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Additional styles */
+.fullWidth {
+  width: 100%;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
