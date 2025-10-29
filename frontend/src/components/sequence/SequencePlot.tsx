@@ -27,9 +27,11 @@ export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProp
   }));
 
   // Subtle tooltip for preview (just text, no box)
-  const PreviewTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
+  const PreviewTooltip = ({ active, payload, coordinate }: any) => {
+    if (active && payload && payload.length && coordinate) {
       const data = payload[0].payload;
+      // Position tooltip above the point by default, below if near top
+      const isNearTop = coordinate.y < 40;
       return (
         <div
           style={{
@@ -37,6 +39,7 @@ export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProp
             fontSize: '0.8rem',
             fontFamily: 'var(--font-mono)',
             opacity: 0.8,
+            transform: isNearTop ? 'translateY(20px)' : 'translateY(-25px)',
           }}
         >
           ({data.index}, {data.value})

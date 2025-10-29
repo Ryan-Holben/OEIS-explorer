@@ -10,6 +10,7 @@
 import { useState } from 'react';
 import { SearchBar } from '../components/ui/SearchBar';
 import { SequenceCard } from '../components/sequence/SequenceCard';
+import { ThemeToggle } from '../components/ui/ThemeToggle';
 import { useRecentSequences, useRandomSequence } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
 import styles from './HomePage.module.css';
@@ -38,6 +39,10 @@ export function HomePage() {
     <div className={styles.homePage}>
       {/* Header with branding and search */}
       <header className={styles.header}>
+        <div className={styles.themeToggleContainer}>
+          <ThemeToggle />
+        </div>
+
         <div className={styles.headerContent}>
           <h1 className={styles.title}>Sequential</h1>
           <p className={styles.subtitle}>
@@ -78,7 +83,10 @@ export function HomePage() {
             ) : (
               recentSequences.map((seq) => (
                 <div key={seq.id} className={styles.recentItem}>
-                  <div className={styles.dateLabel}>
+                  <div
+                    className={styles.dateLabel}
+                    title={formatFullDate(seq.metadata.created)}
+                  >
                     {formatDate(seq.metadata.created)}
                   </div>
                   <SequenceCard
@@ -146,7 +154,7 @@ export function HomePage() {
 }
 
 /**
- * Format date for display
+ * Format date for display with proper pluralization
  */
 function formatDate(dateString: string | undefined): string {
   if (!dateString) return 'Recently added';
@@ -158,9 +166,13 @@ function formatDate(dateString: string | undefined): string {
 
     if (diffDays === 0) return 'Today';
     if (diffDays === 1) return 'Yesterday';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+    if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? '' : 's'} ago`;
+
+    const diffWeeks = Math.floor(diffDays / 7);
+    if (diffDays < 30) return `${diffWeeks} week${diffWeeks === 1 ? '' : 's'} ago`;
+
+    const diffMonths = Math.floor(diffDays / 30);
+    if (diffDays < 365) return `${diffMonths} month${diffMonths === 1 ? '' : 's'} ago`;
 
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
@@ -169,5 +181,24 @@ function formatDate(dateString: string | undefined): string {
     });
   } catch {
     return 'Recently added';
+  }
+}
+
+/**
+ * Format full date for tooltip
+ */
+function formatFullDate(dateString: string | undefined): string {
+  if (!dateString) return 'Date unknown';
+
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch {
+    return 'Date unknown';
   }
 }
