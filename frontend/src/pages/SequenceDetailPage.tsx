@@ -109,7 +109,7 @@ export function SequenceDetailPage({ sequenceId }: SequenceDetailPageProps) {
         {/* Sequence values */}
         <section className={styles.valuesSection}>
           <h2>Sequence Values</h2>
-          <SequenceValuesTable values={sequence.values} maxCount={50} />
+          <SequenceValuesTable values={sequence.values} maxCount={200} />
         </section>
 
         {/* Metadata section */}
