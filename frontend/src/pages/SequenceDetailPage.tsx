@@ -15,6 +15,7 @@ import { FullPlot } from '../components/sequence/SequencePlot';
 import { ANumber } from '../components/sequence/ANumber';
 import { SequenceValuesTable } from '../components/sequence/SequenceValuesTable';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
+import { AccentColorPicker } from '../components/ui/AccentColorPicker';
 import styles from './SequenceDetailPage.module.css';
 
 export interface SequenceDetailPageProps {
@@ -59,6 +60,7 @@ export function SequenceDetailPage({ sequenceId }: SequenceDetailPageProps) {
           ← Home
         </button>
         <div className={styles.themeToggleContainer}>
+          <AccentColorPicker />
           <ThemeToggle />
         </div>
       </header>

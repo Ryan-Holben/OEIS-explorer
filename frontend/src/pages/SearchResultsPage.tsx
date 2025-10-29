@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import { SearchBar } from '../components/ui/SearchBar';
 import { SequenceCard } from '../components/sequence/SequenceCard';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
+import { AccentColorPicker } from '../components/ui/AccentColorPicker';
 import { useSearch } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
 import styles from './SearchResultsPage.module.css';
@@ -61,6 +62,7 @@ export function SearchResultsPage({ initialQuery }: SearchResultsPageProps) {
           </div>
 
           <div className={styles.themeToggleContainer}>
+            <AccentColorPicker />
             <ThemeToggle />
           </div>
         </div>

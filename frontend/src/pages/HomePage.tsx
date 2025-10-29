@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { SearchBar } from '../components/ui/SearchBar';
 import { SequenceCard } from '../components/sequence/SequenceCard';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
+import { AccentColorPicker } from '../components/ui/AccentColorPicker';
 import { useRecentSequences, useRandomSequence } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
 import styles from './HomePage.module.css';
@@ -40,6 +41,7 @@ export function HomePage() {
       {/* Header with branding and search */}
       <header className={styles.header}>
         <div className={styles.themeToggleContainer}>
+          <AccentColorPicker />
           <ThemeToggle />
         </div>
 
