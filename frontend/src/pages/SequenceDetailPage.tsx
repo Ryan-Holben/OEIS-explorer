@@ -141,12 +141,14 @@ export function SequenceDetailPage({ sequenceId }: SequenceDetailPageProps) {
               <span className={styles.metadataLabel}>Max Value</span>
               <span className={styles.metadataValue}>{sequence.metadata.maxValue}</span>
             </div>
-            <div className={styles.metadataItem}>
-              <span className={styles.metadataLabel}>Mean</span>
-              <span className={styles.metadataValue}>
-                {sequence.metadata.mean.toFixed(2)}
-              </span>
-            </div>
+            {sequence.metadata.mean !== undefined && (
+              <div className={styles.metadataItem}>
+                <span className={styles.metadataLabel}>Mean</span>
+                <span className={styles.metadataValue}>
+                  {sequence.metadata.mean.toFixed(2)}
+                </span>
+              </div>
+            )}
             {sequence.metadata.created && (
               <div className={styles.metadataItem}>
                 <span className={styles.metadataLabel}>Created</span>
