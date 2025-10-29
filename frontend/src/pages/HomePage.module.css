@@ -62,7 +62,7 @@
   margin: 0 auto;
   padding: var(--space-xl) var(--space-lg);
   display: grid;
-  grid-template-columns: 1.55fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: var(--space-xl);
   align-items: start;
 }
@@ -211,7 +211,7 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .mainContent {
-    grid-template-columns: 1.55fr 1fr;
+    grid-template-columns: 3fr 2fr;
     gap: var(--space-lg);
   }
 }
