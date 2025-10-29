@@ -26,9 +26,7 @@ export function HomePage() {
   const { sequence: randomSequence, loading: randomLoading } = useRandomSequence(randomTrigger);
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    // TODO: Navigate to search results page
-    console.log('Search:', query);
+    router.toSearch(query);
   };
 
   const handleRefreshRandom = () => {
