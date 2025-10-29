@@ -9,6 +9,7 @@
  */
 
 import { useState, useRef, useEffect, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { useSequence } from '../../hooks/useSequenceData';
 import styles from './ANumber.module.css';
 
@@ -124,13 +125,14 @@ export function ANumber({
         {displayText}
       </a>
 
-      {/* Preview popup (rendered later to avoid being cut off by parent) */}
-      {showingPreview && showPreview && sequence && (
+      {/* Preview popup (rendered via portal to avoid HTML nesting violations) */}
+      {showingPreview && showPreview && sequence && createPortal(
         <PreviewPopup
           sequence={sequence}
           position={previewPosition}
           onClose={() => setShowingPreview(false)}
-        />
+        />,
+        document.body
       )}
     </>
   );

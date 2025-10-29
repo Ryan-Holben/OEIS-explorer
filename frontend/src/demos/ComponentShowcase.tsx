@@ -50,14 +50,12 @@ export function ComponentShowcase() {
       {/* Section 1: Search Bar */}
       <section className={styles.section}>
         <h2>1. Search Bar Component</h2>
-        <p>
-          Auto-detecting search with hints. Try entering:
-          <ul>
-            <li>A-number: <code>A000045</code> or <code>45</code></li>
-            <li>Sequence: <code>1,1,2,3,5,8</code></li>
-            <li>Keywords: <code>fibonacci</code></li>
-          </ul>
-        </p>
+        <p>Auto-detecting search with hints. Try entering:</p>
+        <ul>
+          <li>A-number: <code>A000045</code> or <code>45</code></li>
+          <li>Sequence: <code>1,1,2,3,5,8</code></li>
+          <li>Keywords: <code>fibonacci</code></li>
+        </ul>
         <div className={styles.demo}>
           <SearchBar
             onSearch={handleSearch}

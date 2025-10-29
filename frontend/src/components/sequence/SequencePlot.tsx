@@ -75,7 +75,7 @@ export function FullPlot({
     originalValue: value,
   }));
 
-  // Custom tooltip to show original values even in log scale
+  // Custom tooltip with simple format: (n, a(n))
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
@@ -85,21 +85,13 @@ export function FullPlot({
             backgroundColor: 'var(--color-panel-bg)',
             border: '1px solid var(--color-panel-border)',
             borderRadius: 'var(--radius-sm)',
-            padding: 'var(--space-sm)',
-            fontSize: '0.85rem',
+            padding: 'var(--space-xs) var(--space-sm)',
+            fontSize: '0.9rem',
+            color: 'var(--color-text-primary)',
+            fontFamily: 'var(--font-mono)',
           }}
         >
-          <div style={{ color: 'var(--color-text-secondary)' }}>
-            Index: <strong style={{ color: 'var(--color-text-primary)' }}>{data.index}</strong>
-          </div>
-          <div style={{ color: 'var(--color-text-secondary)' }}>
-            Value: <strong style={{ color: 'var(--color-accent-primary)' }}>{data.originalValue}</strong>
-          </div>
-          {logScale && (
-            <div style={{ color: 'var(--color-text-tertiary)', fontSize: '0.8em' }}>
-              log₁₀: {data.value.toFixed(2)}
-            </div>
-          )}
+          ({data.index}, {data.originalValue})
         </div>
       );
     }
@@ -141,7 +133,7 @@ export function FullPlot({
           stroke="var(--color-text-tertiary)"
           tick={{ fill: 'var(--color-text-tertiary)', fontSize: '0.85rem' }}
         />
-        {showTooltip && <Tooltip content={<CustomTooltip />} />}
+        {showTooltip && <Tooltip content={<CustomTooltip />} animationDuration={0} />}
         <Line
           type="monotone"
           dataKey="value"
