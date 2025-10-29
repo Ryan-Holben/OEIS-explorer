@@ -60,9 +60,6 @@ export function HomePage() {
         <section className={styles.recentColumn}>
           <div className={styles.sectionHeader}>
             <h2>Recently Added</h2>
-            <span className={styles.count}>
-              {recentSequences.length} sequences
-            </span>
           </div>
 
           <div className={styles.recentFeed}>
@@ -98,7 +95,7 @@ export function HomePage() {
         {/* Right column: Random sequence */}
         <aside className={styles.randomColumn}>
           <div className={styles.sectionHeader}>
-            <h2>Random Discovery</h2>
+            <h2>Random Sequence</h2>
             <button
               className={styles.refreshButton}
               onClick={handleRefreshRandom}

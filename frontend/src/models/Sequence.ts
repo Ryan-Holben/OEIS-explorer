@@ -196,6 +196,10 @@ export class Sequence {
       }
     }
 
+    // Calculate mean
+    const sum = values.reduce((acc, val) => acc + val, 0);
+    const mean = values.length > 0 ? sum / values.length : undefined;
+
     this._metadata = {
       aNumber: this.id,
       dataPoints: values.length,
@@ -205,6 +209,9 @@ export class Sequence {
       isSigned,
       isNonNegative,
       offset,
+      created: this.oeisData?.created,
+      mean,
+      count: values.length,
     };
 
     return this._metadata;

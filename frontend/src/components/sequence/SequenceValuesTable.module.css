@@ -1,0 +1,120 @@
+/**
+ * Sequence Values Table styles
+ */
+
+.container {
+  width: 100%;
+}
+
+.table {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+}
+
+/* Header column (a(n) / n) */
+.headerColumn {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(--color-bg-tertiary);
+}
+
+.headerCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  min-height: 48px;
+}
+
+.headerCell:first-child {
+  border-bottom: 2px solid var(--color-accent-primary);
+}
+
+/* Accent separator between header and values */
+.accentSeparator {
+  width: 2px;
+  background-color: var(--color-accent-primary);
+  flex-shrink: 0;
+}
+
+/* Values container */
+.valuesContainer {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+}
+
+/* Individual value column */
+.valueColumn {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border);
+  min-width: 80px;
+}
+
+.valueColumn:last-child {
+  border-right: none;
+}
+
+/* Value cells */
+.valueCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-accent-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid var(--color-accent-primary);
+  min-height: 48px;
+}
+
+.indexCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem;
+  min-height: 48px;
+}
+
+/* More indicator */
+.moreIndicator {
+  margin-top: var(--space-md);
+  padding: var(--space-sm);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .valueColumn {
+    min-width: 60px;
+  }
+
+  .valueCell,
+  .indexCell {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
+  .headerCell {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+}

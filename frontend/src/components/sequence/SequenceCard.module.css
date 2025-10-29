@@ -57,26 +57,9 @@
   font-size: 0.9rem;
   color: var(--color-text-primary);
   padding: var(--space-xs) 0;
-  overflow-x: auto;
+  overflow: hidden;
   white-space: nowrap;
-}
-
-.data::-webkit-scrollbar {
-  height: 4px;
-}
-
-.data::-webkit-scrollbar-track {
-  background: var(--color-bg-tertiary);
-  border-radius: 2px;
-}
-
-.data::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 2px;
-}
-
-.data::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+  text-overflow: ellipsis;
 }
 
 /* Plot section */

@@ -26,12 +26,33 @@ export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProp
     value,
   }));
 
+  // Subtle tooltip for preview (just text, no box)
+  const PreviewTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div
+          style={{
+            color: 'var(--color-text-tertiary)',
+            fontSize: '0.8rem',
+            fontFamily: 'var(--font-mono)',
+            opacity: 0.8,
+          }}
+        >
+          ({data.index}, {data.value})
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <ResponsiveContainer width={width} height={height}>
       <LineChart
         data={data}
         margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
       >
+        <Tooltip content={<PreviewTooltip />} animationDuration={0} cursor={false} />
         <Line
           type="monotone"
           dataKey="value"

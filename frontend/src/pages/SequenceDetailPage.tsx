@@ -13,6 +13,7 @@ import { useSequence } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
 import { FullPlot } from '../components/sequence/SequencePlot';
 import { ANumber } from '../components/sequence/ANumber';
+import { SequenceValuesTable } from '../components/sequence/SequenceValuesTable';
 import styles from './SequenceDetailPage.module.css';
 
 export interface SequenceDetailPageProps {
@@ -104,21 +105,7 @@ export function SequenceDetailPage({ sequenceId }: SequenceDetailPageProps) {
         {/* Sequence values */}
         <section className={styles.valuesSection}>
           <h2>Sequence Values</h2>
-          <div className={styles.valuesGrid}>
-            {sequence.values.slice(0, 50).map((value, index) => (
-              <div key={index} className={styles.valueItem}>
-                <span className={styles.valueIndex}>a({index})</span>
-                <span className={styles.valueNumber}>{value}</span>
-              </div>
-            ))}
-            {sequence.values.length > 50 && (
-              <div className={styles.valueItem}>
-                <span className={styles.moreValues}>
-                  ... and {sequence.values.length - 50} more values
-                </span>
-              </div>
-            )}
-          </div>
+          <SequenceValuesTable values={sequence.values} maxCount={50} />
         </section>
 
         {/* Metadata section */}

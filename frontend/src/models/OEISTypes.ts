@@ -113,4 +113,13 @@ export interface SequenceMetadata {
 
   /** Offset values [first index, first value > 1] */
   offset: [number, number] | null;
+
+  /** Date when the sequence was created (from OEIS) */
+  created?: string;
+
+  /** Mean/average value of the sequence */
+  mean?: number;
+
+  /** Number of values in sequence */
+  count: number;
 }
