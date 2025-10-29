@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import { Panel } from './components/ui/Panel';
 import { ThemeToggle } from './components/ui/ThemeToggle';
 import './App.css';
 
+const fonts = [
+  { name: 'Inter', value: 'Inter, sans-serif' },
+  { name: 'Poppins', value: 'Poppins, sans-serif' },
+  { name: 'Space Grotesk', value: "'Space Grotesk', sans-serif" },
+  { name: 'DM Sans', value: "'DM Sans', sans-serif" },
+  { name: 'IBM Plex Sans', value: "'IBM Plex Sans', sans-serif" },
+  { name: 'Merriweather (Serif)', value: "'Merriweather', serif" },
+  { name: 'Lora (Serif)', value: "'Lora', serif" },
+  { name: 'Crimson Pro (Serif)', value: "'Crimson Pro', serif" },
+];
+
 function App() {
+  const [selectedFont, setSelectedFont] = useState('Inter, sans-serif');
+
   return (
-    <div className="app">
+    <div className="app" style={{ fontFamily: selectedFont }}>
       <header className="app-header">
         <div className="container">
           <div className="header-content">
@@ -81,72 +95,27 @@ function App() {
         <section className="section">
           <h2>Font Showcase</h2>
           <p style={{ marginBottom: 'var(--space-lg)', color: 'var(--color-text-secondary)' }}>
-            Elegant, readable, professional fonts with subtle design personality
+            Click any font to preview it across the entire page
           </p>
           <div className="grid-wide">
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: 'Inter, sans-serif' }}>
-                <h3>Inter</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                <h3>Poppins</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                <h3>Space Grotesk</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                <h3>DM Sans</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
-                <h3>IBM Plex Sans</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'Merriweather', serif" }}>
-                <h3>Merriweather (Serif)</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'Lora', serif" }}>
-                <h3>Lora (Serif)</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
-
-            <Panel>
-              <div className="font-sample" style={{ fontFamily: "'Crimson Pro', serif" }}>
-                <h3>Crimson Pro (Serif)</h3>
-                <p className="header-sample">Sequential Explorer</p>
-                <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
-              </div>
-            </Panel>
+            {fonts.map((font) => (
+              <Panel
+                key={font.value}
+                clickable
+                elevation={selectedFont === font.value ? 'floating' : 'elevated'}
+                onClick={() => setSelectedFont(font.value)}
+                style={{
+                  borderColor: selectedFont === font.value ? 'var(--color-accent-primary)' : undefined,
+                  borderWidth: selectedFont === font.value ? '2px' : undefined
+                }}
+              >
+                <div className="font-sample" style={{ fontFamily: font.value }}>
+                  <h3>{font.name} {selectedFont === font.value && '✓'}</h3>
+                  <p className="header-sample">Sequential Explorer</p>
+                  <p className="body-sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+                </div>
+              </Panel>
+            ))}
           </div>
         </section>
 

@@ -40,10 +40,10 @@
   --z-modal: 1030;
   --z-tooltip: 1040;
 
-  /* Light theme colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8f9fa;
-  --color-bg-tertiary: #e9ecef;
+  /* Light theme colors - warm toned */
+  --color-bg-primary: #fdfbf7;
+  --color-bg-secondary: #f7f4ef;
+  --color-bg-tertiary: #f0ede8;
 
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #6c757d;
@@ -52,7 +52,7 @@
   --color-border: #dee2e6;
   --color-border-hover: #adb5bd;
 
-  --color-panel-bg: #ffffff;
+  --color-panel-bg: #ffffff;  /* Keep panels pure white for contrast */
   --color-panel-border: rgba(0, 0, 0, 0.08);
   --color-panel-shadow: rgba(0, 0, 0, 0.08);
 
@@ -73,10 +73,10 @@
 
 /* Explicit light theme (overrides system preference) */
 [data-theme='light'] {
-  /* Light theme colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8f9fa;
-  --color-bg-tertiary: #e9ecef;
+  /* Light theme colors - warm toned */
+  --color-bg-primary: #fdfbf7;
+  --color-bg-secondary: #f7f4ef;
+  --color-bg-tertiary: #f0ede8;
 
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #6c757d;
@@ -85,7 +85,7 @@
   --color-border: #dee2e6;
   --color-border-hover: #adb5bd;
 
-  --color-panel-bg: #ffffff;
+  --color-panel-bg: #ffffff;  /* Keep panels pure white for contrast */
   --color-panel-border: rgba(0, 0, 0, 0.08);
   --color-panel-shadow: rgba(0, 0, 0, 0.08);
 

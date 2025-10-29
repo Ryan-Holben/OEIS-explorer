@@ -155,15 +155,13 @@ main {
   font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--color-text-primary);
-  padding: var(--space-sm);
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-sm);
+  padding: var(--space-xs) 0;
   overflow-x: auto;
   white-space: nowrap;
 }
 
 .mini-chart {
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
   background-color: var(--color-bg-tertiary);
   border-radius: var(--radius-sm);
   text-align: center;
