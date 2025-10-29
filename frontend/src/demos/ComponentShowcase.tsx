@@ -24,7 +24,7 @@ export function ComponentShowcase() {
   const { sequence, loading, error } = useSequence(selectedANumber);
 
   // Search results
-  const { results: searchResults, loading: searchLoading } = useSearch(
+  const { sequences: searchResults, loading: searchLoading } = useSearch(
     searchQuery.trim() ? searchQuery : null,
     { start: 0, limit: 5 }
   );
