@@ -6,27 +6,59 @@
  * - FullPlot: Interactive plot with controls for sequence detail pages
  */
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import type { Sequence } from '../../models/Sequence';
 
 export interface PlotProps {
   sequence: Sequence;
-  width?: number | string;
-  height?: number | string;
+  width?: number | `${number}%`;
+  height?: number;
+  showZeroAxis?: boolean;
+  showYAxis?: boolean;
 }
 
 /**
  * Preview Plot - Minimal visualization without labels or interactivity
  * Intended for sequence cards and hover previews
  */
-export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProps) {
+export function PreviewPlot({ sequence, width = '100%', height = 120, showZeroAxis = false, showYAxis = true }: PlotProps) {
   // Prepare data for chart
   const data = sequence.values.map((value, index) => ({
     index,
     value,
   }));
 
-  // Subtle tooltip for preview (just text, no box)
+  // Calculate min and max for y-axis ticks
+  const minValue = sequence.metadata.minValue;
+  const maxValue = sequence.metadata.maxValue;
+
+  // Create y-axis ticks array, excluding 0
+  const yAxisTicks: number[] = [];
+  if (minValue !== 0) yAxisTicks.push(minValue);
+  if (maxValue !== 0 && maxValue !== minValue) yAxisTicks.push(maxValue);
+
+  // Custom tick component that adjusts position of bottom label
+  const CustomTick = ({ x, y, payload }: any) => {
+    // If this is the lowest tick value (bottom of chart), move it up to prevent cutoff
+    const isLowestTick = yAxisTicks.length > 0 && payload.value === yAxisTicks[0];
+    const adjustedY = isLowestTick ? y - 8 : y;
+
+    return (
+      <text
+        x={x + 10}
+        y={adjustedY}
+        fill="var(--color-text-tertiary)"
+        fontSize="0.75rem"
+        fontFamily="var(--font-mono)"
+        textAnchor="start"
+        dominantBaseline="middle"
+      >
+        {payload.value}
+      </text>
+    );
+  };
+
+  // Subtle tooltip for preview with semi-transparent background
   const PreviewTooltip = ({ active, payload, coordinate }: any) => {
     if (active && payload && payload.length && coordinate) {
       const data = payload[0].payload;
@@ -35,10 +67,13 @@ export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProp
       return (
         <div
           style={{
-            color: 'var(--color-text-tertiary)',
+            backgroundColor: 'var(--color-panel-bg)',
+            opacity: 0.8,
+            borderRadius: 'var(--radius-sm)',
+            padding: 'var(--space-xs) var(--space-sm)',
+            color: 'var(--color-text-primary)',
             fontSize: '0.8rem',
             fontFamily: 'var(--font-mono)',
-            opacity: 0.8,
             transform: isNearTop ? 'translateY(20px)' : 'translateY(-25px)',
           }}
         >
@@ -55,6 +90,25 @@ export function PreviewPlot({ sequence, width = '100%', height = 120 }: PlotProp
         data={data}
         margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
       >
+        {showZeroAxis && (
+          <ReferenceLine
+            y={0}
+            stroke="var(--color-text-tertiary)"
+            strokeWidth={1}
+            opacity={0.5}
+          />
+        )}
+        {showYAxis && (
+          <YAxis
+            domain={[minValue, maxValue]}
+            ticks={yAxisTicks}
+            orientation="left"
+            axisLine={{ stroke: 'var(--color-text-tertiary)', strokeWidth: 1 }}
+            tickLine={false}
+            tick={<CustomTick />}
+            width={30}
+          />
+        )}
         <Tooltip content={<PreviewTooltip />} animationDuration={0} cursor={false} />
         <Line
           type="monotone"
@@ -138,7 +192,7 @@ export function FullPlot({
         <XAxis
           dataKey="index"
           label={{
-            value: 'Index (n)',
+            value: 'n',
             position: 'insideBottom',
             offset: -10,
             style: { fill: 'var(--color-text-secondary)', fontSize: '0.9rem' },
@@ -148,7 +202,7 @@ export function FullPlot({
         />
         <YAxis
           label={{
-            value: logScale ? 'log₁₀(value)' : 'Value',
+            value: logScale ? 'log₁₀(a(n))' : 'a(n)',
             angle: -90,
             position: 'insideLeft',
             style: { fill: 'var(--color-text-secondary)', fontSize: '0.9rem' },

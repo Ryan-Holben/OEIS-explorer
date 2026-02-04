@@ -70,6 +70,12 @@
   overflow: hidden;
 }
 
+/* Remove background in light mode for cleaner look */
+:root:not([data-theme='dark']) .plot,
+[data-theme='light'] .plot {
+  background-color: transparent;
+}
+
 /* Loading state */
 .loading {
   opacity: 0.6;

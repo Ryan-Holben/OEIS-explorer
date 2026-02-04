@@ -98,7 +98,7 @@ export function SequenceCard({
         {hasMore && ', ...'}
       </div>
       <div className={styles.plot}>
-        <PreviewPlot sequence={sequence} height={size === 'compact' ? 80 : 120} />
+        <PreviewPlot sequence={sequence} height={size === 'compact' ? 80 : 120} showYAxis={false} />
       </div>
     </>
   );
@@ -122,7 +122,7 @@ export function SequenceCard({
           </div>
         </div>
         <div className={styles.plot}>
-          <PreviewPlot sequence={sequence} height={150} />
+          <PreviewPlot sequence={sequence} height={150} showYAxis={false} />
         </div>
       </a>
     );

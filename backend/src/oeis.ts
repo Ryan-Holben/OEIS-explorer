@@ -116,17 +116,24 @@ function parseOEISResponse(data: string): OEISResponse {
 
     // OEIS returns either an array directly or a wrapped object
     if (Array.isArray(parsed)) {
+      // OEIS JSON API doesn't provide total count, only returns results for this page
       return {
         results: parsed,
         count: parsed.length,
       };
     }
 
-    // Ensure results field is defined
+    // Parse as OEISResponse object
     const response = parsed as OEISResponse;
+
+    // Ensure results field is defined
     if (!response.results) {
       response.results = [];
-      response.count = 0;
+    }
+
+    // Use count from OEIS if available, otherwise use results length
+    if (response.count === undefined || response.count === null) {
+      response.count = response.results?.length || 0;
     }
 
     return response;

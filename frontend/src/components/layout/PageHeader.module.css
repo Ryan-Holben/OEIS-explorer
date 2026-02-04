@@ -1,0 +1,58 @@
+/**
+ * Page Header styles
+ */
+
+.header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.headerSearchContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.headerSearchContainer > div {
+  max-width: 600px;
+  width: 100%;
+}
+
+.themeToggleContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.backButton {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.backButton:hover {
+  background-color: var(--color-hover-bg);
+  border-color: var(--color-accent-primary);
+  color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: var(--space-md);
+  }
+}

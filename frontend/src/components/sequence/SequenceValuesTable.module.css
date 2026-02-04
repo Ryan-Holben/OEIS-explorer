@@ -16,6 +16,25 @@
   font-family: var(--font-mono);
 }
 
+/* Scrollbar styling */
+.table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table::-webkit-scrollbar-track {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.table::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.table::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
 /* Header column (a(n) / n) */
 .headerColumn {
   display: flex;

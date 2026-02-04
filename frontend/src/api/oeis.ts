@@ -1,6 +1,6 @@
 /**
  * OEIS API client
- * Connects to the Sequential backend API
+ * Connects to the backend API
  */
 
 import type { OEISRawData } from '../models/OEISTypes';

@@ -14,3 +14,10 @@
 - [x] Make the string for recently added time, e.g. "1 Months Ago" properly use plural or singular to be gramatically correct.  On hover, show the actual date.
 - [x] Make sure that the headers for the 2 columns start with aligned y values before the user begins scrolling.  Currently the Random Sequence header is slightly lower than the Recently Added column
 - [x] Make the Recently added column 10% narrower, and give that horizontal space to the Random Sequence column
+- [x] The search maxes out at 20.  Learn from the actual oeis.org search page how to query for prev/next page, and add that functionality.
+- [x] Remove the popup on the search bar.
+- [x] Put the search bar component inside the top bar on the sequence details page
+- [x] Add a small 50% opacity rounded edge bounding box with no edge stroke to the tooltip for the preview plot component
+- [x] Look at lines 249-253 in DESIGN.md and implement that
+- [x] Add a horizontal scrollbar to the sequence table component
+- [x] Center the search bar we added to the sequence details page

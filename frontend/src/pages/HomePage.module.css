@@ -60,7 +60,7 @@
 /* Main Content - Two Column Layout */
 .mainContent {
   flex: 1;
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-lg);
@@ -120,7 +120,6 @@
   font-weight: 500;
   padding-left: var(--space-sm);
   letter-spacing: 0.01em;
-  cursor: help;
 }
 
 /* Random Sequence Column (Right) */

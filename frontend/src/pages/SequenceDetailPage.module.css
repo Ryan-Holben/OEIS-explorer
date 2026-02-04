@@ -7,41 +7,6 @@
   background-color: var(--color-bg-primary);
 }
 
-/* Header */
-.header {
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg-secondary);
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.themeToggleContainer {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.backButton {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-md);
-  font-size: 0.95rem;
-  color: var(--color-text-primary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  font-family: var(--font-family);
-}
-
-.backButton:hover {
-  background-color: var(--color-hover-bg);
-  border-color: var(--color-accent-primary);
-}
-
 /* Main Content */
 .content {
   max-width: 1200px;
@@ -294,6 +259,137 @@
   text-decoration: underline;
 }
 
+/* Tabs Section */
+.tabsSection {
+  margin-top: var(--space-2xl);
+}
+
+/* Discrete Calculus Section */
+.calculusSection {
+  margin-top: var(--space-lg);
+}
+
+.calculusIntro {
+  padding: var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border-left: 3px solid var(--color-accent-primary);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.calculusIntro p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.calculusGroup {
+  margin-bottom: var(--space-2xl);
+}
+
+.calculusGroup h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.calculusGroup h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  font-family: var(--font-mono);
+}
+
+/* Analysis Row - Flex layout for table and plot */
+.analysisRow {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.analysisRow > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.plotPreview {
+  flex: 0 0 300px;
+  min-width: 300px;
+  background-color: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+/* Analysis Section */
+.analysisSection {
+  margin-top: var(--space-lg);
+}
+
+.analysisIntro {
+  padding: var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border-left: 3px solid var(--color-accent-primary);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.analysisIntro p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.analysisGroup {
+  margin-bottom: var(--space-2xl);
+}
+
+.analysisGroup h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.propertiesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.propertyItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.propertyLabel {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.propertyValue {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .content {
@@ -321,5 +417,20 @@
 
   .metadataGrid {
     grid-template-columns: 1fr;
+  }
+
+  .propertyItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .analysisRow {
+    flex-direction: column;
+  }
+
+  .plotPreview {
+    width: 100%;
+    min-width: auto;
   }
 }

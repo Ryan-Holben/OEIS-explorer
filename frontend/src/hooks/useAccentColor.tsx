@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { useTheme } from './useTheme.tsx';
 
 export type AccentColor = 'red' | 'blue' | 'green' | 'purple' | 'orange';
 
@@ -93,12 +92,34 @@ function applyAccentColor(color: AccentColor, isDark: boolean) {
 
 export const AccentColorProvider = ({ children }: { children: ReactNode }) => {
   const [accentColor, setAccentColorState] = useState<AccentColor>(() => getInitialAccentColor());
-  const { effectiveTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    applyAccentColor(accentColor, effectiveTheme === 'dark');
+    // Listen for theme changes from the theme provider
+    const observer = new MutationObserver(() => {
+      const theme = document.documentElement.getAttribute('data-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const effectiveIsDark = theme === 'dark' || (!theme && systemDark);
+      setIsDark(effectiveIsDark);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    // Initial check
+    const theme = document.documentElement.getAttribute('data-theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDark(theme === 'dark' || (!theme && systemDark));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    applyAccentColor(accentColor, isDark);
     localStorage.setItem(STORAGE_KEY, accentColor);
-  }, [accentColor, effectiveTheme]);
+  }, [accentColor, isDark]);
 
   const setAccentColor = (color: AccentColor) => {
     setAccentColorState(color);
@@ -118,5 +139,3 @@ export const useAccentColor = () => {
   }
   return context;
 };
-
-export { ACCENT_COLORS };

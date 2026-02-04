@@ -14,6 +14,7 @@ import { ThemeToggle } from '../components/ui/ThemeToggle';
 import { AccentColorPicker } from '../components/ui/AccentColorPicker';
 import { useRecentSequences, useRandomSequence } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
+import { APP_NAME } from '../config/app';
 import styles from './HomePage.module.css';
 
 const RECENT_SEQUENCES_COUNT = 8;
@@ -46,9 +47,9 @@ export function HomePage() {
         </div>
 
         <div className={styles.headerContent}>
-          <h1 className={styles.title}>Sequential</h1>
+          <h1 className={styles.title}>{APP_NAME}</h1>
           <p className={styles.subtitle}>
-            Explore the Online Encyclopedia of Integer Sequences
+            Explore the Online Encyclopedia of Integer Sequences (<a href="http://www.oeis.org">OEIS.org</a>)
           </p>
         </div>
 
@@ -56,7 +57,7 @@ export function HomePage() {
           <SearchBar
             onSearch={handleSearch}
             placeholder="Search by A-number, sequence values, or keywords..."
-            showHints={true}
+            showHints={false}
           />
         </div>
       </header>
@@ -66,7 +67,7 @@ export function HomePage() {
         {/* Left column: Recent sequences */}
         <section className={styles.recentColumn}>
           <div className={styles.sectionHeader}>
-            <h2>Recently Added</h2>
+            <h2>Recently added</h2>
           </div>
 
           <div className={styles.recentFeed}>
@@ -85,10 +86,7 @@ export function HomePage() {
             ) : (
               recentSequences.map((seq) => (
                 <div key={seq.id} className={styles.recentItem}>
-                  <div
-                    className={styles.dateLabel}
-                    title={formatFullDate(seq.metadata.created)}
-                  >
+                  <div className={styles.dateLabel}>
                     {formatDate(seq.metadata.created)}
                   </div>
                   <SequenceCard
@@ -105,7 +103,7 @@ export function HomePage() {
         {/* Right column: Random sequence */}
         <aside className={styles.randomColumn}>
           <div className={styles.sectionHeader}>
-            <h2>Random Sequence</h2>
+            <h2>Discover a random sequence</h2>
             <button
               className={styles.refreshButton}
               onClick={handleRefreshRandom}
@@ -157,6 +155,7 @@ export function HomePage() {
 
 /**
  * Format date for display with proper pluralization
+ * Shows relative time with full date in parentheses
  */
 function formatDate(dateString: string | undefined): string {
   if (!dateString) return 'Recently added';
@@ -166,41 +165,24 @@ function formatDate(dateString: string | undefined): string {
     const now = new Date();
     const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 0) return 'Today';
-    if (diffDays === 1) return 'Yesterday';
-    if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? '' : 's'} ago`;
-
-    const diffWeeks = Math.floor(diffDays / 7);
-    if (diffDays < 30) return `${diffWeeks} week${diffWeeks === 1 ? '' : 's'} ago`;
-
-    const diffMonths = Math.floor(diffDays / 30);
-    if (diffDays < 365) return `${diffMonths} month${diffMonths === 1 ? '' : 's'} ago`;
-
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-  } catch {
-    return 'Recently added';
-  }
-}
-
-/**
- * Format full date for tooltip
- */
-function formatFullDate(dateString: string | undefined): string {
-  if (!dateString) return 'Date unknown';
-
-  try {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long',
+    const fullDate = date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     });
+
+    if (diffDays === 0) return `Today (${fullDate})`;
+    if (diffDays === 1) return `Yesterday (${fullDate})`;
+    if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? '' : 's'} ago (${fullDate})`;
+
+    const diffWeeks = Math.floor(diffDays / 7);
+    if (diffDays < 30) return `${diffWeeks} week${diffWeeks === 1 ? '' : 's'} ago (${fullDate})`;
+
+    const diffMonths = Math.floor(diffDays / 30);
+    if (diffDays < 365) return `${diffMonths} month${diffMonths === 1 ? '' : 's'} ago (${fullDate})`;
+
+    return fullDate;
   } catch {
-    return 'Date unknown';
+    return 'Recently added';
   }
 }

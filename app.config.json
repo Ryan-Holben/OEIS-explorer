@@ -1,8 +1,8 @@
 {
-  "name": "Sequential",
+  "name": "Sequentia",
   "description": "A modern interface for exploring integer sequences",
   "version": "0.1.0",
-  "author": "Your Name",
+  "author": "Ryan Holben",
   "repository": "https://github.com/yourusername/seq",
   "homepage": "https://yourusername.github.io/seq",
   "api": {

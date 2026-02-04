@@ -9,10 +9,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import { SearchBar } from '../components/ui/SearchBar';
 import { SequenceCard } from '../components/sequence/SequenceCard';
-import { ThemeToggle } from '../components/ui/ThemeToggle';
-import { AccentColorPicker } from '../components/ui/AccentColorPicker';
+import { PageHeader } from '../components/layout/PageHeader';
 import { useSearch } from '../hooks/useSequenceData';
 import { router } from '../hooks/useRouter';
 import styles from './SearchResultsPage.module.css';
@@ -26,18 +24,27 @@ type SortOption = 'relevance' | 'number' | 'modified' | 'created';
 export function SearchResultsPage({ initialQuery }: SearchResultsPageProps) {
   const [query, setQuery] = useState(initialQuery);
   const [sort, setSort] = useState<SortOption>('relevance');
+  const [page, setPage] = useState(1);
   const [limit] = useState(20);
 
+  const start = (page - 1) * limit;
+
   const { sequences, loading, error, count } = useSearch(query, {
-    start: 0,
+    start,
     limit,
     sort,
   });
 
-  // Update query when initialQuery prop changes
+  // Update query when initialQuery prop changes and reset to page 1
   useEffect(() => {
     setQuery(initialQuery);
+    setPage(1);
   }, [initialQuery]);
+
+  // Reset to page 1 when sort changes
+  useEffect(() => {
+    setPage(1);
+  }, [sort]);
 
   const handleSearch = (newQuery: string) => {
     router.toSearch(newQuery);
@@ -45,28 +52,13 @@ export function SearchResultsPage({ initialQuery }: SearchResultsPageProps) {
 
   return (
     <div className={styles.page}>
-      {/* Header */}
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <button onClick={router.toHome} className={styles.backButton}>
-            ← Home
-          </button>
-
-          <div className={styles.searchContainer}>
-            <SearchBar
-              initialValue={query}
-              onSearch={handleSearch}
-              loading={loading}
-              showHints={false}
-            />
-          </div>
-
-          <div className={styles.themeToggleContainer}>
-            <AccentColorPicker />
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <PageHeader
+        onBackClick={router.toHome}
+        onSearch={handleSearch}
+        searchValue={query}
+        searchLoading={loading}
+        showSearchHints={false}
+      />
 
       {/* Main content */}
       <main className={styles.content}>
@@ -79,11 +71,36 @@ export function SearchResultsPage({ initialQuery }: SearchResultsPageProps) {
               <span className={styles.error}>Error: {error.message}</span>
             ) : (
               <span>
-                Found <strong>{count}</strong> {count === 1 ? 'sequence' : 'sequences'}
+                Displaying <strong>{sequences.length}</strong> {sequences.length === 1 ? 'sequence' : 'sequences'}
                 {query && ` for "${query}"`}
               </span>
             )}
           </div>
+
+          {/* Top pagination controls */}
+          {!loading && !error && (page > 1 || sequences.length === limit) && (
+            <div className={styles.paginationTop}>
+              <button
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className={styles.paginationButton}
+              >
+                ← Previous
+              </button>
+
+              <div className={styles.paginationInfo}>
+                Page {page}
+              </div>
+
+              <button
+                onClick={() => setPage(p => p + 1)}
+                disabled={sequences.length < limit}
+                className={styles.paginationButton}
+              >
+                Next →
+              </button>
+            </div>
+          )}
 
           <div className={styles.sortControls}>
             <label htmlFor="sort">Sort by:</label>
@@ -135,10 +152,28 @@ export function SearchResultsPage({ initialQuery }: SearchResultsPageProps) {
           </div>
         )}
 
-        {/* Show message if results are limited */}
-        {!loading && sequences.length === limit && count > limit && (
-          <div className={styles.limitMessage}>
-            Showing first {limit} of {count} results
+        {/* Pagination controls */}
+        {!loading && !error && (page > 1 || sequences.length === limit) && (
+          <div className={styles.pagination}>
+            <button
+              onClick={() => setPage(p => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className={styles.paginationButton}
+            >
+              ← Previous
+            </button>
+
+            <div className={styles.paginationInfo}>
+              Page {page}
+            </div>
+
+            <button
+              onClick={() => setPage(p => p + 1)}
+              disabled={sequences.length < limit}
+              className={styles.paginationButton}
+            >
+              Next →
+            </button>
           </div>
         )}
       </main>

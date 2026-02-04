@@ -1,5 +1,5 @@
 /**
- * Sequential Backend API Server
+ * Backend API Server
  * Provides CORS-enabled proxy to OEIS with comprehensive search capabilities
  */
 
@@ -7,6 +7,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import * as oeis from './oeis.js';
+import appConfig from '../../app.config.json';
 
 // Load environment variables
 dotenv.config();
@@ -381,7 +382,7 @@ app.use((req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log('');
   console.log('='.repeat(60));
-  console.log('  Sequential Backend API');
+  console.log(`  ${appConfig.name} Backend API`);
   console.log('='.repeat(60));
   console.log(`  Environment: ${NODE_ENV}`);
   console.log(`  Server:      http://localhost:${PORT}`);
